@@ -56,7 +56,9 @@ foreach ($handlers as $index => $serviceKey) {
 
 // add a custom handler
 $container['logger.handler.custom'] = function($container) {
-	return new StreamHandler(TL_ROOT . '/system/logs/critical.log', \Monolog\Logger::CRITICAL);
+	$factory = $container['logger.factory.handler.stream'];
+	// store in /var/log/critical.log
+	return $factory('/var/log/critical.log', \Monolog\Logger::CRITICAL);
 }
 $handlers->append('logger.handler.custom');
 ```
@@ -68,7 +70,9 @@ global $container;
 
 // register a handler
 $container['logger.handler.custom'] = function($container) {
-	return new StreamHandler(TL_ROOT . '/system/logs/critical.log', \Monolog\Logger::CRITICAL);
+	$factory = $container['logger.factory.handler.stream'];
+	// store a system/logs/critical.log
+	return $factory('critical.log', \Monolog\Logger::CRITICAL);
 }
 
 // register your logger
