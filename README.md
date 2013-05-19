@@ -112,31 +112,107 @@ Factories
 ---------
 
 ### `$container['logger.factory.handler.contao']`
-`function($level = null, $bubble = true, $function = null, $action = null)`
+```php
+/**
+ * @param int    $level    The minimum logging level at which this handler will be triggered
+ * @param bool   $bubble   Whether the messages that are handled can bubble up the stack or not
+ * @param string $function The function name in the contao syslog (use channel name by default)
+ * @param string $action   The action name in the contao syslog (use simplified log level name by default)
+ */
+function($level = null, $bubble = true, $function = null, $action = null)
+```
 
 ### `$container['logger.factory.handler.buffer']`
-`function($handler, $bufferSize = 0, $level = null, $bubble = true)`
+```php
+/**
+ * @param string|callable|Monolog\Handler\HandlerInterface $handler         Service name, callable or handler object.
+ * @param int                                              $bufferSize      How many entries should be buffered at most, beyond that the oldest items are removed from the buffer.
+ * @param int                                              $level           The minimum logging level at which this handler will be triggered
+ * @param bool                                             $bubble          Whether the messages that are handled can bubble up the stack or not
+ * @param bool                                             $flushOnOverflow If true, the buffer is flushed when the max size has been reached, by default oldest entries are discarded
+ */
+function function($handler, $bufferSize = 0, $level = null, $bubble = true, $flushOnOverflow = false)
+```
 
 ### `$container['logger.factory.handler.chromePhp']`
-`function($level = null, $bubble = true)`
+```php
+/**
+ * @param int  $level  The minimum logging level at which this handler will be triggered
+ * @param bool $bubble Whether the messages that are handled can bubble up the stack or not
+ */
+function function($level = null, $bubble = true)
+```
 
 ### `$container['logger.factory.handler.fingersCrossed']`
-`function($handler, $activationStrategy = null, $bufferSize = 0, $bubble = true, $stopBuffering = true)`
+```php
+/**
+ * @param string|callable|Monolog\Handler\HandlerInterface $handler            Service name, callable or handler object.
+ * @param int|ActivationStrategyInterface                  $activationStrategy The minimum logging level at which this handler will be triggered
+ * @param int                                              $bufferSize         How many entries should be buffered at most, beyond that the oldest items are removed from the buffer.
+ * @param bool                                             $bubble             Whether the messages that are handled can bubble up the stack or not
+ * @param bool                                             $stopBuffering      Whether the handler should stop buffering after being triggered (default true)
+ */
+function function($handler, $activationStrategy = null, $bufferSize = 0, $bubble = true, $stopBuffering = true)
+```
 
 ### `$container['logger.factory.handler.firePhp']`
-`function($level = null, $bubble = true)`
+```php
+/**
+ * @param int  $level  The minimum logging level at which this handler will be triggered
+ * @param bool $bubble Whether the messages that are handled can bubble up the stack or not
+ */
+function function($level = null, $bubble = true)
+```
 
 ### `$container['logger.factory.handler.group']`
-`function(array $handlers, $bubble = true)`
+```php
+/**
+ * @param array $handlers List of services, callbacks or handlers.
+ * @param bool  $bubble   Whether the messages that are handled can bubble up the stack or not
+ */
+function function(array $handlers, $bubble = true)
+```
 
 ### `$container['logger.factory.handler.rotatingFile']`
-`function($filename, $maxFiles = null, $level = null, $bubble = true)`
+```php
+/**
+ * @param string $filename Absolute filename or single name (stored in system/logs/)
+ * @param int    $maxFiles The maximal amount of files to keep (0 means unlimited)
+ * @param int    $level  The minimum logging level at which this handler will be triggered
+ * @param bool   $bubble Whether the messages that are handled can bubble up the stack or not
+ */
+function function($filename, $maxFiles = null, $level = null, $bubble = true)
+```
 
 ### `$container['logger.factory.handler.mail']`
-`function($to = null, $subject = null, $from = null, $level = null, $bubble = true)`
+```php
+/**
+ * A handler using swift to send entries as emails.
+ *
+ * @param string $to      The email recipient address
+ * @param string $subject The email subject
+ * @param string $from    The email sender address
+ * @param int    $level   The minimum logging level at which this handler will be triggered
+ * @param bool   $bubble  Whether the messages that are handled can bubble up the stack or not
+ */
+function function($to = null, $subject = null, $from = null, $level = null, $bubble = true)
+```
 
 ### `$container['logger.factory.handler.stream']`
-`function($uri, $level = null, $bubble = true)`
+```php
+/**
+ * @param string $uri    Stream uri
+ * @param int    $level  The minimum logging level at which this handler will be triggered
+ * @param bool   $bubble Whether the messages that are handled can bubble up the stack or not
+ */
+function function($uri, $level = null, $bubble = true)
+```
 
 ### `$container['logger.factory']`
-`function($name, array $handlers)`
+```php
+/**
+ * @param string $name     The channel name
+ * @param array  $handlers List of services or handlers.
+ */
+function function($name, array $handlers = array())
+```
