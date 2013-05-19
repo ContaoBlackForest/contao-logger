@@ -157,7 +157,7 @@ $container['logger.factory.handler.firePhp'] = Container::protect(
  * Factory to create a group handler
  */
 $container['logger.factory.handler.group'] = Container::protect(
-	function (array $handlers, $bubble = true) {
+	function ($handlers, $bubble = true) {
 		global $container;
 
 		foreach ($handlers as $index => $handler) {
@@ -282,7 +282,7 @@ $container['logger.factory.handler.stream'] = Container::protect(
  * Factory to create a logger
  */
 $container['logger.factory'] = Container::protect(
-	function ($name, array $handlers = array()) {
+	function ($name, $handlers = array()) {
 		global $container;
 
 		$logger = new Logger($name);
