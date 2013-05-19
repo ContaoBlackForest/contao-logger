@@ -58,7 +58,7 @@ $container['logger.handler.stream'] = Container::share(
 /**
  * The default logger handlers
  */
-$container['logger.handlers'] = new ArrayObject(
+$container['logger.default.handlers'] = new ArrayObject(
 	array(
 		'logger.handler.contao',
 		'logger.handler.stream'
@@ -70,7 +70,7 @@ $container['logger.handlers'] = new ArrayObject(
  */
 $container['logger'] = function ($container) {
 	$factory = $container['logger.factory'];
-	$logger  = $factory('contao', $container['logger.handlers']);
+	$logger  = $factory('contao', $container['logger.default.handlers']);
 
 	return $logger;
 };

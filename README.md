@@ -38,13 +38,13 @@ $container['logger.default.level'] = \Monolog\Logger::WARNING;
 
 ### Define default log handlers
 
-The default log handlers are stored in `$container['logger.handlers']` containing a list of handler services.
+The default log handlers are stored in `$container['logger.default.handlers']` containing a list of handler services.
 
 ```php
 global $container;
 
 // receive the default log handlers array (its an ArrayObject instance)
-$handlers = $container['logger.handlers'];
+$handlers = $container['logger.default.handlers'];
 
 // remove the contao syslog handler
 foreach ($handlers as $index => $serviceKey) {
@@ -102,7 +102,7 @@ Services
 ### `$container['logger.handler.stream']`
 (`Monolog\Handler\HandlerInterface|Monolog\Handler\RotatingFileHandler`) default rotating logfile (system/logs/contao-Y-m-d.log) handler
 
-### `$container['logger.handlers']`
+### `$container['logger.default.handlers']`
 (`ArrayObject`) list of default log handlers
 
 ### `$container['logger']`
