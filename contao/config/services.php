@@ -261,11 +261,11 @@ $container['logger.factory.handler.stream'] = Container::protect(
 	function ($uri, $level = null, $bubble = true) {
 		global $container;
 
-		if ($level === null) {
-			$level = $container['logger.default.level'];
-		}
 		if (strpos('/', $uri) === false) {
 			$uri = TL_ROOT . '/system/log/' . $uri;
+		}
+		if ($level === null) {
+			$level = $container['logger.default.level'];
 		}
 
 		return new StreamHandler($uri, $level, $bubble);
