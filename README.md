@@ -89,74 +89,52 @@ Reference
 
 ### Services
 
-<table>
-<tr>
-	<td>`$container['logger.default.level']`</td>
-	<td>(`int`) the default log level, default: `Logger::INFO`</td>
-</tr>
-<tr>
-	<td>`$container['logger.default.rotation']`</td>
-	<td>(`int`) number of days for log rotation, default: 28</td>
-</tr>
-<tr>
-	<td>`$container['logger.handler.contao']`</td>
-	<td>(`Monolog\Handler\HandlerInterface|Logger\ContaoHandler`) default contao syslog handler</td>
-</tr>
-<tr>
-	<td>`$container['logger.handler.stream']`</td>
-	<td>(`Monolog\Handler\HandlerInterface|Monolog\Handler\RotatingFileHandler`) default rotating logfile (system/logs/contao-Y-m-d.log) handler</td>
-</tr>
-<tr>
-	<td>`$container['logger.handlers']`</td>
-	<td>(`ArrayObject`) list of default log handlers</td>
-</tr>
-<tr>
-	<td>`$container['logger']`</td>
-	<td>(`Psr\Log\LoggerInterface|Monolog\Logger`) the default logger</td>
-</tr>
-</table>
+#### `$container['logger.default.level']`
+(`int`) the default log level, default: `Logger::INFO`
+
+#### `$container['logger.default.rotation']`
+(`int`) number of days for log rotation, default: 28
+
+#### `$container['logger.handler.contao']`
+(`Monolog\Handler\HandlerInterface|Logger\ContaoHandler`) default contao syslog handler
+
+#### `$container['logger.handler.stream']`
+(`Monolog\Handler\HandlerInterface|Monolog\Handler\RotatingFileHandler`) default rotating logfile (system/logs/contao-Y-m-d.log) handler
+
+#### `$container['logger.handlers']`
+(`ArrayObject`) list of default log handlers
+
+#### `$container['logger']`
+(`Psr\Log\LoggerInterface|Monolog\Logger`) the default logger
 
 ### Factories
 
-<table>
-<tr>
-	<td>`$container['logger.factory.handler.contao']`</td>
-	<td>`function($level = null, $bubble = true, $function = null, $action = null)`</td>
-</tr>
-<tr>
-	<td>`$container['logger.factory.handler.buffer']`</td>
-	<td>`function($handler, $bufferSize = 0, $level = null, $bubble = true)`</td>
-</tr>
-<tr>
-	<td>`$container['logger.factory.handler.chromePhp']`</td>
-	<td>`function($level = null, $bubble = true)`</td>
-</tr>
-<tr>
-	<td>`$container['logger.factory.handler.fingersCrossed']`</td>
-	<td>`function($handler, $activationStrategy = null, $bufferSize = 0, $bubble = true, $stopBuffering = true)`</td>
-</tr>
-<tr>
-	<td>`$container['logger.factory.handler.firePhp']`</td>
-	<td>`function($level = null, $bubble = true)`</td>
-</tr>
-<tr>
-	<td>`$container['logger.factory.handler.group']`</td>
-	<td>`function(array $handlers, $bubble = true)`</td>
-</tr>
-<tr>
-	<td>`$container['logger.factory.handler.rotatingFile']`</td>
-	<td>`function($filename, $maxFiles = null, $level = null, $bubble = true)`</td>
-</tr>
-<tr>
-	<td>`$container['logger.factory.handler.mail']`</td>
-	<td>`function($to = null, $subject = null, $from = null, $level = null, $bubble = true)`</td>
-</tr>
-<tr>
-	<td>`$container['logger.factory.handler.stream']`</td>
-	<td>`function($uri, $level = null, $bubble = true)`</td>
-</tr>
-<tr>
-	<td>`$container['logger.factory']`</td>
-	<td>`function($name, array $handlers)`</td>
-</tr>
-</table>
+#### `$container['logger.factory.handler.contao']`
+`function($level = null, $bubble = true, $function = null, $action = null)`
+
+#### `$container['logger.factory.handler.buffer']`
+`function($handler, $bufferSize = 0, $level = null, $bubble = true)`
+
+#### `$container['logger.factory.handler.chromePhp']`
+`function($level = null, $bubble = true)`
+
+#### `$container['logger.factory.handler.fingersCrossed']`
+`function($handler, $activationStrategy = null, $bufferSize = 0, $bubble = true, $stopBuffering = true)`
+
+#### `$container['logger.factory.handler.firePhp']`
+`function($level = null, $bubble = true)`
+
+#### `$container['logger.factory.handler.group']`
+`function(array $handlers, $bubble = true)`
+
+#### `$container['logger.factory.handler.rotatingFile']`
+`function($filename, $maxFiles = null, $level = null, $bubble = true)`
+
+#### `$container['logger.factory.handler.mail']`
+`function($to = null, $subject = null, $from = null, $level = null, $bubble = true)`
+
+#### `$container['logger.factory.handler.stream']`
+`function($uri, $level = null, $bubble = true)`
+
+#### `$container['logger.factory']`
+`function($name, array $handlers)`
