@@ -276,7 +276,7 @@ $container['logger.factory.handler.stream'] = Container::protect(
  * Factory to create a logger
  */
 $container['logger.factory'] = Container::protect(
-	function ($name, array $handlers) {
+	function ($name, array $handlers = array()) {
 		global $container;
 
 		$logger = new Logger($name);
