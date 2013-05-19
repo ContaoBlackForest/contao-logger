@@ -177,6 +177,9 @@ $container['logger.factory.handler.rotatingFile'] = Container::protect(
 	function ($filename, $maxFiles = null, $level = null, $bubble = true) {
 		global $container;
 
+		if (strpos('/', $filename) === false) {
+			$filename = TL_ROOT . '/system/log/' . $filename;
+		}
 		if ($level === null) {
 			$level = $container['logger.default.level'];
 		}
