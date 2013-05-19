@@ -39,7 +39,7 @@ $container['logger.default.rotation'] = 28;
  * The default contao syslog handler
  */
 $container['logger.handler.contao'] = Container::share(
-	function($container) {
+	function ($container) {
 		$factory = $container['logger.factory.handler.contao'];
 		return $factory();
 	}
@@ -49,7 +49,7 @@ $container['logger.handler.contao'] = Container::share(
  * The default stream handler
  */
 $container['logger.handler.stream'] = Container::share(
-	function($container) {
+	function ($container) {
 		$factory = $container['logger.factory.handler.rotatingFile'];
 		return $factory('contao.log', $container['logger.default.rotation']);
 	}
@@ -68,9 +68,9 @@ $container['logger.handlers'] = new ArrayObject(
 /**
  * The default logger
  */
-$container['logger'] = function($container) {
+$container['logger'] = function ($container) {
 	$factory = $container['logger.factory'];
-	$logger = $factory('contao', $container['logger.handlers']);
+	$logger  = $factory('contao', $container['logger.handlers']);
 
 	return $logger;
 };
@@ -210,36 +210,42 @@ $container['logger.factory.handler.mail'] = Container::protect(
 		}
 		else {
 			// SMTP
-			$transport = Swift_SmtpTransport::newInstance($GLOBALS['TL_CONFIG']['smtpHost'], $GLOBALS['TL_CONFIG']['smtpPort']);
+			$transport = Swift_SmtpTransport::newInstance(
+				$GLOBALS['TL_CONFIG']['smtpHost'],
+				$GLOBALS['TL_CONFIG']['smtpPort']
+			);
 
 			// Encryption
-			if ($GLOBALS['TL_CONFIG']['smtpEnc'] == 'ssl' || $GLOBALS['TL_CONFIG']['smtpEnc'] == 'tls')
-			{
+			if ($GLOBALS['TL_CONFIG']['smtpEnc'] == 'ssl' || $GLOBALS['TL_CONFIG']['smtpEnc'] == 'tls') {
 				$transport->setEncryption($GLOBALS['TL_CONFIG']['smtpEnc']);
 			}
 
 			// Authentication
-			if ($GLOBALS['TL_CONFIG']['smtpUser'] != '')
-			{
-				$transport->setUsername($GLOBALS['TL_CONFIG']['smtpUser'])->setPassword($GLOBALS['TL_CONFIG']['smtpPass']);
+			if ($GLOBALS['TL_CONFIG']['smtpUser'] != '') {
+				$transport
+					->setUsername($GLOBALS['TL_CONFIG']['smtpUser'])
+					->setPassword($GLOBALS['TL_CONFIG']['smtpPass']);
 			}
 		}
 
 		$mailer = Swift_Mailer::newInstance($transport);
 
-		$messageFactory = function() use ($to, $subject, $from) {
+		$messageFactory = function () use ($to, $subject, $from) {
 			if (!$to) {
 				$to = $GLOBALS['TL_CONFIG']['adminEmail'];
 			}
 			if (!$subject) {
-				$subject = 'Log message from ' . $GLOBALS['TL_CONFIG']['websiteTitle'] . ' (' . Environment::getInstance()->request . ')';
+				$subject = 'Log message from ' . $GLOBALS['TL_CONFIG']['websiteTitle'] . ' (' . Environment::getInstance(
+					)->request . ')';
 			}
 			if (!$from) {
 				$from = $GLOBALS['TL_CONFIG']['adminEmail'];
 			}
 
 			$message = Swift_Message::newInstance();
-			$message->getHeaders()->addTextHeader('X-Mailer', 'Logger for Contao Open Source CMS');
+			$message
+				->getHeaders()
+				->addTextHeader('X-Mailer', 'Logger for Contao Open Source CMS');
 			$message->setTo($to);
 			$message->setSubject($subject);
 			$message->setFrom($from);
