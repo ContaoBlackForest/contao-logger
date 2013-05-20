@@ -36,6 +36,16 @@ $container['logger.default.level'] = Logger::INFO;
 $container['logger.default.rotation'] = 28;
 
 /**
+ * The default logger handlers
+ */
+$container['logger.default.handlers'] = new ArrayObject(
+	array(
+		'logger.handler.contao',
+		'logger.handler.stream'
+	)
+);
+
+/**
  * The default contao syslog handler
  */
 $container['logger.handler.contao'] = Container::share(
@@ -53,16 +63,6 @@ $container['logger.handler.stream'] = Container::share(
 		$factory = $container['logger.factory.handler.rotatingFile'];
 		return $factory('contao.log', $container['logger.default.rotation']);
 	}
-);
-
-/**
- * The default logger handlers
- */
-$container['logger.default.handlers'] = new ArrayObject(
-	array(
-		'logger.handler.contao',
-		'logger.handler.stream'
-	)
 );
 
 /**
