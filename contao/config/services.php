@@ -23,12 +23,34 @@ use Monolog\Handler\GroupHandler;
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Handler\SwiftMailerHandler;
 use Monolog\Handler\StreamHandler;
+use Psr\Log\LogLevel;
 use Logger\ContaoHandler;
 
 /**
- * The default log level
+ * The default log levels
  */
-$container['logger.default.level'] = Logger::INFO;
+$container['logger.default.level'] = LogLevel::INFO;
+$container['logger.default.level.contao'] = function($container) {
+	return $container['logger.default.level'];
+};
+$container['logger.default.level.buffer'] = function($container) {
+	return $container['logger.default.level'];
+};
+$container['logger.default.level.chromePhp'] = function($container) {
+	return $container['logger.default.level'];
+};
+$container['logger.default.level.firePhp'] = function($container) {
+	return $container['logger.default.level'];
+};
+$container['logger.default.level.rotatingFile'] = function($container) {
+	return $container['logger.default.level'];
+};
+$container['logger.default.level.mail'] = function($container) {
+	return LogLevel::ERROR;
+};
+$container['logger.default.level.stream'] = function($container) {
+	return $container['logger.default.level'];
+};
 
 /**
  * The default log rotation
@@ -83,8 +105,11 @@ $container['logger.factory.handler.contao'] = Container::protect(
 		global $container;
 
 		if ($level === null) {
-			$level = $container['logger.default.level'];
+			$level = constant('Monolog\Logger::' . strtoupper($container['logger.default.level.contao']));
 		}
+		else if (is_string($level) && defined('Monolog\Logger::'.strtoupper($level))) {
+            $level = constant('Monolog\Logger::'.strtoupper($level));
+        }
 
 		return new ContaoHandler($level, $bubble, $function, $action);
 	}
@@ -101,8 +126,11 @@ $container['logger.factory.handler.buffer'] = Container::protect(
 			$handler = $container[$handler];
 		}
 		if ($level === null) {
-			$level = $container['logger.default.level'];
+			$level = constant('Monolog\Logger::' . strtoupper($container['logger.default.level.buffer']));
 		}
+		else if (is_string($level) && defined('Monolog\Logger::'.strtoupper($level))) {
+            $level = constant('Monolog\Logger::'.strtoupper($level));
+        }
 
 		return new BufferHandler($handler, $bufferSize, $level, $bubble, $flushOnOverflow);
 	}
@@ -116,8 +144,11 @@ $container['logger.factory.handler.chromePhp'] = Container::protect(
 		global $container;
 
 		if ($level === null) {
-			$level = $container['logger.default.level'];
+			$level = constant('Monolog\Logger::' . strtoupper($container['logger.default.level.chromePhp']));
 		}
+		else if (is_string($level) && defined('Monolog\Logger::'.strtoupper($level))) {
+            $level = constant('Monolog\Logger::'.strtoupper($level));
+        }
 
 		return new ChromePHPHandler($level, $bubble);
 	}
@@ -146,8 +177,11 @@ $container['logger.factory.handler.firePhp'] = Container::protect(
 		global $container;
 
 		if ($level === null) {
-			$level = $container['logger.default.level'];
+			$level = constant('Monolog\Logger::' . strtoupper($container['logger.default.level.firePhp']));
 		}
+		else if (is_string($level) && defined('Monolog\Logger::'.strtoupper($level))) {
+            $level = constant('Monolog\Logger::'.strtoupper($level));
+        }
 
 		return new FirePHPHandler($level, $bubble);
 	}
@@ -180,9 +214,14 @@ $container['logger.factory.handler.rotatingFile'] = Container::protect(
 		if (strpos('/', $filename) === false) {
 			$filename = TL_ROOT . '/system/log/' . $filename;
 		}
+
 		if ($level === null) {
-			$level = $container['logger.default.level'];
+			$level = constant('Monolog\Logger::' . strtoupper($container['logger.default.level.rotatingFile']));
 		}
+		else if (is_string($level) && defined('Monolog\Logger::'.strtoupper($level))) {
+            $level = constant('Monolog\Logger::'.strtoupper($level));
+        }
+
 		if ($maxFiles === null) {
 			$maxFiles = $container['logger.default.rotation'];
 		}
@@ -253,8 +292,11 @@ $container['logger.factory.handler.mail'] = Container::protect(
 		};
 
 		if ($level === null) {
-			$level = $container['logger.default.level'];
+			$level = constant('Monolog\Logger::' . strtoupper($container['logger.default.level.mail']));
 		}
+		else if (is_string($level) && defined('Monolog\Logger::'.strtoupper($level))) {
+            $level = constant('Monolog\Logger::'.strtoupper($level));
+        }
 
 		return new SwiftMailerHandler($mailer, $messageFactory, $level, $bubble);
 	}
@@ -271,8 +313,11 @@ $container['logger.factory.handler.stream'] = Container::protect(
 			$uri = TL_ROOT . '/system/log/' . $uri;
 		}
 		if ($level === null) {
-			$level = $container['logger.default.level'];
+			$level = constant('Monolog\Logger::' . strtoupper($container['logger.default.level.stream']));
 		}
+		else if (is_string($level) && defined('Monolog\Logger::'.strtoupper($level))) {
+            $level = constant('Monolog\Logger::'.strtoupper($level));
+        }
 
 		return new StreamHandler($uri, $level, $bubble);
 	}

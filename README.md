@@ -33,7 +33,7 @@ global $container;
 $level = $container['logger.default.level'];
 
 // change default log level
-$container['logger.default.level'] = \Monolog\Logger::WARNING;
+$container['logger.default.level'] = \Psr\Log\LogLevel::WARNING;
 ```
 
 ### Define default log handlers
@@ -58,7 +58,7 @@ foreach ($handlers as $index => $serviceKey) {
 $container['logger.handler.custom'] = function($container) {
 	$factory = $container['logger.factory.handler.stream'];
 	// store in /var/log/critical.log
-	return $factory('/var/log/critical.log', \Monolog\Logger::CRITICAL);
+	return $factory('/var/log/critical.log', \Psr\Log\LogLevel::CRITICAL);
 }
 $handlers->append('logger.handler.custom');
 ```
@@ -71,7 +71,7 @@ global $container;
 // register a handler
 $container['logger.handler.custom'] = function($container) {
 	$factory = $container['logger.factory.handler.stream'];
-	// store a system/logs/critical.log
+	// store in system/logs/critical.log
 	return $factory('critical.log', \Monolog\Logger::CRITICAL);
 }
 
@@ -95,7 +95,28 @@ Services
 --------
 
 ### `$container['logger.default.level']`
-(`int`) the default log level, default: `Logger::INFO`
+(`int`) the default log level, default: `Psr\Log\LogLevel::INFO`
+
+### `$container['logger.default.level.contao']`
+(`int`) the default log level, inherited from `$container['logger.default.level']`
+
+### `$container['logger.default.level.buffer']`
+(`int`) the default log level, inherited from `$container['logger.default.level']`
+
+### `$container['logger.default.level.chromePhp']`
+(`int`) the default log level, inherited from `$container['logger.default.level']`
+
+### `$container['logger.default.level.firePhp']`
+(`int`) the default log level, inherited from `$container['logger.default.level']`
+
+### `$container['logger.default.level.rotatingFile']`
+(`int`) the default log level, inherited from `$container['logger.default.level']`
+
+### `$container['logger.default.level.mail']`
+(`int`) the default log level, default: `Psr\Log\LogLevel::ERROR`
+
+### `$container['logger.default.level.stream']`
+(`int`) the default log level, inherited from `$container['logger.default.level']`
 
 ### `$container['logger.default.rotation']`
 (`int`) number of days for log rotation, default: 28
