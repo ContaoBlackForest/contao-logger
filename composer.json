@@ -14,9 +14,9 @@
 	],
 	"support":{
 		"email":"info@bit3.de",
-		"issues":"https://github.com/bit3/contao-monolog/issues",
+		"issues":"https://github.com/bit3/contao-logger/issues",
 		"irc":"irc://irc.freenode.org/contao.dev",
-		"source":"https://github.com/bit3/contao-monolog"
+		"source":"https://github.com/bit3/contao-logger"
 	},
 	"require":{
 		"php":">=5.3",
