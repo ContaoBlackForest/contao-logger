@@ -13,7 +13,6 @@
  * @filesource
  */
 
-use DependencyInjection\Container;
 use Monolog\Logger;
 use Monolog\Handler\BufferHandler;
 use Monolog\Handler\ChromePHPHandler;
@@ -70,7 +69,7 @@ $container['logger.default.handlers'] = new ArrayObject(
 /**
  * The default contao syslog handler
  */
-$container['logger.handler.contao'] = Container::share(
+$container['logger.handler.contao'] = $container->share(
 	function ($container) {
 		$factory = $container['logger.factory.handler.contao'];
 		return $factory();
@@ -80,7 +79,7 @@ $container['logger.handler.contao'] = Container::share(
 /**
  * The default stream handler
  */
-$container['logger.handler.stream'] = Container::share(
+$container['logger.handler.stream'] = $container->share(
 	function ($container) {
 		$factory = $container['logger.factory.handler.rotatingFile'];
 		return $factory('contao.log', $container['logger.default.rotation']);
@@ -100,7 +99,7 @@ $container['logger'] = function ($container) {
 /**
  * Factory to create a contao syslog handler
  */
-$container['logger.factory.handler.contao'] = Container::protect(
+$container['logger.factory.handler.contao'] = $container->protect(
 	function ($level = null, $bubble = true, $function = null, $action = null) {
 		global $container;
 
@@ -118,7 +117,7 @@ $container['logger.factory.handler.contao'] = Container::protect(
 /**
  * Factory to create a buffer handler
  */
-$container['logger.factory.handler.buffer'] = Container::protect(
+$container['logger.factory.handler.buffer'] = $container->protect(
 	function ($handler, $bufferSize = 0, $level = null, $bubble = true, $flushOnOverflow = false) {
 		global $container;
 
@@ -139,7 +138,7 @@ $container['logger.factory.handler.buffer'] = Container::protect(
 /**
  * Factory to create a chrome php handler
  */
-$container['logger.factory.handler.chromePhp'] = Container::protect(
+$container['logger.factory.handler.chromePhp'] = $container->protect(
 	function ($level = null, $bubble = true) {
 		global $container;
 
@@ -157,7 +156,7 @@ $container['logger.factory.handler.chromePhp'] = Container::protect(
 /**
  * Factory to create a fingers crossed handler
  */
-$container['logger.factory.handler.fingersCrossed'] = Container::protect(
+$container['logger.factory.handler.fingersCrossed'] = $container->protect(
 	function ($handler, $activationStrategy = null, $bufferSize = 0, $bubble = true, $stopBuffering = true) {
 		global $container;
 
@@ -172,7 +171,7 @@ $container['logger.factory.handler.fingersCrossed'] = Container::protect(
 /**
  * Factory to create a fire php handler
  */
-$container['logger.factory.handler.firePhp'] = Container::protect(
+$container['logger.factory.handler.firePhp'] = $container->protect(
 	function ($level = null, $bubble = true) {
 		global $container;
 
@@ -190,7 +189,7 @@ $container['logger.factory.handler.firePhp'] = Container::protect(
 /**
  * Factory to create a group handler
  */
-$container['logger.factory.handler.group'] = Container::protect(
+$container['logger.factory.handler.group'] = $container->protect(
 	function ($handlers, $bubble = true) {
 		global $container;
 
@@ -207,7 +206,7 @@ $container['logger.factory.handler.group'] = Container::protect(
 /**
  * Factory to create a rotating file handler
  */
-$container['logger.factory.handler.rotatingFile'] = Container::protect(
+$container['logger.factory.handler.rotatingFile'] = $container->protect(
 	function ($filename, $maxFiles = null, $level = null, $bubble = true) {
 		global $container;
 
@@ -233,7 +232,7 @@ $container['logger.factory.handler.rotatingFile'] = Container::protect(
 /**
  * Factory to create a mail handler
  */
-$container['logger.factory.handler.mail'] = Container::protect(
+$container['logger.factory.handler.mail'] = $container->protect(
 	function ($to = null, $subject = null, $from = null, $level = null, $bubble = true) {
 		global $container;
 
@@ -305,7 +304,7 @@ $container['logger.factory.handler.mail'] = Container::protect(
 /**
  * Factory to create a stream handler
  */
-$container['logger.factory.handler.stream'] = Container::protect(
+$container['logger.factory.handler.stream'] = $container->protect(
 	function ($uri, $level = null, $bubble = true) {
 		global $container;
 
@@ -326,7 +325,7 @@ $container['logger.factory.handler.stream'] = Container::protect(
 /**
  * Factory to create a logger
  */
-$container['logger.factory'] = Container::protect(
+$container['logger.factory'] = $container->protect(
 	function ($name, $handlers = array()) {
 		global $container;
 
