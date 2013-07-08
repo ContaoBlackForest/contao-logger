@@ -211,7 +211,7 @@ $container['logger.factory.handler.rotatingFile'] = $container->protect(
 		global $container;
 
 		if (strpos('/', $filename) === false) {
-			$filename = TL_ROOT . '/system/log/' . $filename;
+			$filename = TL_ROOT . '/system/logs/' . $filename;
 		}
 
 		if ($level === null) {
@@ -309,7 +309,7 @@ $container['logger.factory.handler.stream'] = $container->protect(
 		global $container;
 
 		if (strpos('/', $uri) === false) {
-			$uri = TL_ROOT . '/system/log/' . $uri;
+			$uri = TL_ROOT . '/system/logs/' . $uri;
 		}
 		if ($level === null) {
 			$level = constant('Monolog\Logger::' . strtoupper($container['logger.default.level.stream']));
