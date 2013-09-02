@@ -15,22 +15,10 @@
 
 namespace Logger;
 
-class ContaoHandlerAdapter
+class Contao3xBridge
 {
-	protected $bridge;
-
-	public function __construct()
-	{
-		if (version_compare(VERSION, '3', '>=')) {
-			$this->bridge = new Contao3xBridge();
-		}
-		else {
-			$this->bridge = new Contao2xBridge();
-		}
-	}
-
 	public function log($strText, $strFunction, $strAction)
 	{
-		$this->bridge->log($strText, $strFunction, $strAction);
+		\System::log($strText, $strFunction, $strAction);
 	}
 }
