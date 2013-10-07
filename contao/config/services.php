@@ -199,6 +199,10 @@ $container['logger.factory.handler.group'] = $container->protect(
 			}
 		}
 
+		if ($handlers instanceof ArrayObject) {
+			$handlers = $handlers->getArrayCopy();
+		}
+
 		return new GroupHandler($handlers, $bubble);
 	}
 );
