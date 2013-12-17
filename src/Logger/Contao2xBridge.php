@@ -24,6 +24,8 @@ class Contao2xBridge extends \System
 
 	public function log($strText, $strFunction, $strAction)
 	{
-		parent::log($strText, $strFunction, $strAction);
+		if (\Database::getInstance()->tableExists('tl_log')) {
+			parent::log($strText, $strFunction, $strAction);
+		}
 	}
 }
