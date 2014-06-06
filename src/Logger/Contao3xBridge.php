@@ -19,6 +19,8 @@ class Contao3xBridge
 {
 	public function log($strText, $strFunction, $strAction)
 	{
-		\System::log($strText, $strFunction, $strAction);
+		if (\Database::getInstance()->tableExists('tl_log')) {
+			\System::log($strText, $strFunction, $strAction);
+		}
 	}
 }
