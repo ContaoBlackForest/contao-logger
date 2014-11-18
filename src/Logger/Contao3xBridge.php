@@ -15,12 +15,24 @@
 
 namespace Logger;
 
+/**
+ * Logger bridge for contao 3.x releases.
+ */
 class Contao3xBridge
 {
-	public function log($strText, $strFunction, $strAction)
-	{
-		if (\Database::getInstance()->tableExists('tl_log')) {
-			\System::log($strText, $strFunction, $strAction);
-		}
-	}
+    /**
+     * Create a new log entry.
+     *
+     * @param string $strText     The log message.
+     * @param string $strFunction The raising function.
+     * @param string $strAction   The log action.
+     *
+     * @return void
+     */
+    public function log($strText, $strFunction, $strAction)
+    {
+        if (\Database::getInstance()->tableExists('tl_log')) {
+            \System::log($strText, $strFunction, $strAction);
+        }
+    }
 }

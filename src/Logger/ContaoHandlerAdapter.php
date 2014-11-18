@@ -15,22 +15,41 @@
 
 namespace Logger;
 
+/**
+ * Logging adapter for the contao logging system.
+ */
 class ContaoHandlerAdapter
 {
-	protected $bridge;
+    /**
+     * The internal bridge.
+     *
+     * @var Contao2xBridge
+     */
+    protected $bridge;
 
-	public function __construct()
-	{
-		if (version_compare(VERSION, '3', '>=')) {
-			$this->bridge = new Contao3xBridge();
-		}
-		else {
-			$this->bridge = new Contao2xBridge();
-		}
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct()
+    {
+        if (version_compare(VERSION, '3', '>=')) {
+            $this->bridge = new Contao3xBridge();
+        } else {
+            $this->bridge = new Contao2xBridge();
+        }
+    }
 
-	public function log($strText, $strFunction, $strAction)
-	{
-		$this->bridge->log($strText, $strFunction, $strAction);
-	}
+    /**
+     * Create a new log entry.
+     *
+     * @param string $strText     The log message.
+     * @param string $strFunction The raising function.
+     * @param string $strAction   The log action.
+     *
+     * @return void
+     */
+    public function log($strText, $strFunction, $strAction)
+    {
+        $this->bridge->log($strText, $strFunction, $strAction);
+    }
 }

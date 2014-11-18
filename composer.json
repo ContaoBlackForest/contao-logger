@@ -1,50 +1,63 @@
 {
-	"name":"bit3/contao-logger",
-	"description":"PSR-3 logger bridge for Contao Open Source CMS",
-	"keywords":["contao", "logger", "psr-3"],
-	"type":"contao-module",
-	"license":"LGPL-3.0+",
-	"authors":[
-		{
-			"name":"Tristan Lins",
-			"email":"tristan.lins@bit3.de",
-			"homepage":"http://bit3.de",
-			"role":"Developer"
-		}
-	],
-	"support":{
-		"email":"info@bit3.de",
-		"issues":"https://github.com/bit3/contao-logger/issues",
-		"irc":"irc://irc.freenode.org/contao.dev",
-		"source":"https://github.com/bit3/contao-logger"
-	},
-	"require":{
-		"php":">=5.3",
-		"contao/core": ">=2.11.11,<4-dev",
-		"contao-community-alliance/composer-installer": "*",
-		"contao-community-alliance/dependency-container": "~1",
-		"psr/log": "~1",
-		"monolog/monolog": "~1.5"
-	},
-	"require-dev":{
-		"phpunit/phpunit":"3.7.*",
-		"squizlabs/php_codesniffer":"1.*",
-		"bit3/php-coding-standard":"@dev"
-	},
-	"autoload":{
-		"psr-0":{
-			"Logger": "src/"
-		}
-	},
-	"extra": {
-		"contao": {
-			"sources": {
-				"contao": "system/modules/logger"
-			}
-		},
-		"branch-alias": {
-			"dev-master": "1.0.x-dev",
-			"dev-develop": "1.1.x-dev"
-		}
-	}
+    "name": "bit3/contao-logger",
+    "description": "PSR-3 logger bridge for Contao Open Source CMS",
+    "keywords": [
+        "contao",
+        "logger",
+        "psr-3"
+    ],
+    "type": "contao-module",
+    "license": "LGPL-3.0+",
+    "authors": [
+        {
+            "name": "Tristan Lins",
+            "email": "tristan.lins@bit3.de",
+            "homepage": "http://bit3.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "info@bit3.de",
+        "issues": "https://github.com/bit3/contao-logger/issues",
+        "irc": "irc://irc.freenode.org/contao.dev",
+        "source": "https://github.com/bit3/contao-logger"
+    },
+    "require": {
+        "php": ">=5.3",
+        "contao/core": ">=2.11.11,<4-dev",
+        "contao-community-alliance/composer-plugin": "~2.0",
+        "contao-community-alliance/dependency-container": "~1.0",
+        "psr/log": "~1.0",
+        "monolog/monolog": "~1.5"
+    },
+    "require-dev": {
+        "contao-community-alliance/coding-standard": "~1.0@dev",
+        "contao-community-alliance/build-system": "~1.0@dev",
+        "contao-community-alliance/build-system-tool-branch-alias-validation": "~1.0",
+        "contao-community-alliance/build-system-tool-travis-configuration-check": "~1.0@dev",
+        "contao-community-alliance/build-system-repository-git": "~1.0@dev",
+        "contao-community-alliance/build-system-logger": "@dev",
+        "squizlabs/php_codesniffer": "~1.0",
+        "pdepend/pdepend": "2.0.*",
+        "phpunit/phpunit": "~3.7",
+        "sebastian/phpcpd": "~1.4",
+        "phploc/phploc": "~2.0",
+        "phpmd/phpmd": "~2.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Logger": "src/"
+        }
+    },
+    "extra": {
+        "contao": {
+            "sources": {
+                "contao": "system/modules/logger"
+            }
+        },
+        "branch-alias": {
+            "dev-master": "1.1.x-dev",
+            "dev-develop": "1.2.x-dev"
+        }
+    }
 }

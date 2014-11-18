@@ -18,53 +18,75 @@ namespace Logger;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Logger;
 
+/**
+ * Logging handler for the contao logging system.
+ */
 class ContaoHandler extends AbstractProcessingHandler
 {
-	protected $function;
+    /**
+     * The raising function, if not set the channel name is used.
+     *
+     * @var null|string
+     */
+    protected $function;
 
-	protected $action;
+    /**
+     * The log action, if not set the level is used.
+     *
+     * @var null|string
+     */
+    protected $action;
 
-	protected $adapter;
+    /**
+     * The internal adapter.
+     *
+     * @var ContaoHandlerAdapter
+     */
+    protected $adapter;
 
-	public function __construct($level = Logger::DEBUG, $bubble = true, $function = null, $action = null)
-	{
-		parent::__construct($level, $bubble);
-		$this->adapter = new ContaoHandlerAdapter();
-	}
+    /**
+     * {@inheritdoc}
+     *
+     * @param null $function The raising function, if not set the channel name is used.
+     * @param null $action   The log action, if not set the level is used.
+     */
+    public function __construct($level = Logger::DEBUG, $bubble = true, $function = null, $action = null)
+    {
+        parent::__construct($level, $bubble);
+        $this->function = $function;
+        $this->action   = $action;
+        $this->adapter  = new ContaoHandlerAdapter();
+    }
 
-	/**
-	 * Writes the record down to the log of the implementing handler
-	 *
-	 * @param  array $record
-	 *
-	 * @return void
-	 */
-	protected function write(array $record)
-	{
-		if ($this->function !== null) {
-			$function = $this->function;
-		}
-		else {
-			$function = $record['channel'];
-		}
+    /**
+     * {@inheritdoc}
+     */
+    protected function write(array $record)
+    {
+        if ($this->function !== null) {
+            $function = $this->function;
+        } else {
+            $function = $record['channel'];
+        }
 
-		if ($this->action !== null) {
-			$action = $this->action;
-		}
-		else if ($record['level'] >= Logger::WARNING) {
-			$action = 'ERROR';
-		}
-		else if ($record['level'] < Logger::INFO) {
-			$action = 'DEBUG';
-		}
-		else {
-			$action = 'GENERAL';
-		}
+        if ($this->action !== null) {
+            $action = $this->action;
+        } else {
+            if ($record['level'] >= Logger::WARNING) {
+                $action = 'ERROR';
+            } else {
+                if ($record['level'] < Logger::INFO) {
+                    $action = 'DEBUG';
+                } else {
+                    $action = 'GENERAL';
+                }
+            }
+        }
 
-		$this->adapter->log(
-			$record['formatted'],
-			$function,
-			$action
-		);
-	}
+        $this->adapter->log(
+            $record['formatted'],
+            $function,
+            $action
+        );
+    }
 }

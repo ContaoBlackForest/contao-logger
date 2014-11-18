@@ -15,17 +15,34 @@
 
 namespace Logger;
 
+/**
+ * Logger bridge for contao 2.x releases.
+ */
 class Contao2xBridge extends \System
 {
-	public function __construct()
-	{
-		parent::__construct();
-	}
+    /**
+     * {@inheritdoc}
+     */
+    // @codingStandardsIgnoreStart
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    // @codingStandardsIgnoreEnd
 
-	public function log($strText, $strFunction, $strAction)
-	{
-		if (\Database::getInstance()->tableExists('tl_log')) {
-			parent::log($strText, $strFunction, $strAction);
-		}
-	}
+    /**
+     * Create a new log entry.
+     *
+     * @param string $strText     The log message.
+     * @param string $strFunction The raising function.
+     * @param string $strAction   The log action.
+     *
+     * @return void
+     */
+    public function log($strText, $strFunction, $strAction)
+    {
+        if (\Database::getInstance()->tableExists('tl_log')) {
+            parent::log($strText, $strFunction, $strAction);
+        }
+    }
 }
