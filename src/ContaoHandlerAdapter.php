@@ -13,7 +13,7 @@
  * @filesource
  */
 
-namespace Logger;
+namespace Bit3\Contao\Logger;
 
 /**
  * Logging adapter for the contao logging system.

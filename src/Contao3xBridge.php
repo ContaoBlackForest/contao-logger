@@ -13,23 +13,13 @@
  * @filesource
  */
 
-namespace Logger;
+namespace Bit3\Contao\Logger;
 
 /**
- * Logger bridge for contao 2.x releases.
+ * Logger bridge for contao 3.x releases.
  */
-class Contao2xBridge extends \System
+class Contao3xBridge
 {
-    /**
-     * {@inheritdoc}
-     */
-    // @codingStandardsIgnoreStart
-    public function __construct()
-    {
-        parent::__construct();
-    }
-    // @codingStandardsIgnoreEnd
-
     /**
      * Create a new log entry.
      *
@@ -42,7 +32,7 @@ class Contao2xBridge extends \System
     public function log($strText, $strFunction, $strAction)
     {
         if (\Database::getInstance()->tableExists('tl_log')) {
-            parent::log($strText, $strFunction, $strAction);
+            \System::log($strText, $strFunction, $strAction);
         }
     }
 }

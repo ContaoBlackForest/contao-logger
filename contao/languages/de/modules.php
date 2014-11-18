@@ -13,4 +13,4 @@
  * @filesource
  */
 
-$GLOBALS['TL_LANG']['MOD']['logger'] = 'Log System';
+$GLOBALS['TL_LANG']['MOD']['logger'] = 'Logger System';

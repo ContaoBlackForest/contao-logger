@@ -13,7 +13,7 @@
  * @filesource
  */
 
-namespace Logger;
+namespace Bit3\Contao\Logger;
 
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Logger;

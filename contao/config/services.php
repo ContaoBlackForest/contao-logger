@@ -13,7 +13,7 @@
  * @filesource
  */
 
-use Logger\ContaoHandler;
+use Bit3\Contao\Logger\ContaoHandler;
 use Monolog\Handler\BufferHandler;
 use Monolog\Handler\ChromePHPHandler;
 use Monolog\Handler\FingersCrossedHandler;
