@@ -2,7 +2,7 @@ Logger bridge for Contao Open Source CMS
 ========================================
 
 This bridge provide PSR-3 logger support for [Contao Open Source CMS](http://contao.org).
-The logger is available via the [dependency injection container](https://github.com/bit3/contao-dependency-container).
+The logger is available via the [dependency injection container](https://github.com/contao-community-alliance/dependency-container).
 
 By default the logger use two handlers.
 * An contao syslog handler, that write log entries to the system log database.
