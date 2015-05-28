@@ -1,5 +1,5 @@
 {
-    "name": "bit3/contao-logger",
+    "name": "contaoblackforest/contao-logger",
     "description": "PSR-3 logger bridge for Contao Open Source CMS",
     "keywords": [
         "contao",
@@ -10,17 +10,19 @@
     "license": "LGPL-3.0+",
     "authors": [
         {
-            "name": "Tristan Lins",
-            "email": "tristan.lins@bit3.de",
-            "homepage": "http://bit3.de",
-            "role": "Developer"
+          "name": "Sven Baumann",
+          "email": "baumann.sv@gmail.com",
+          "role": "Developer"
+        },
+        {
+          "name": "Dominik Tomasi",
+          "email": "dominik.tomasi@gmail.com",
+          "role": "Developer"
         }
     ],
     "support": {
-        "email": "info@bit3.de",
-        "issues": "https://github.com/bit3/contao-logger/issues",
-        "irc": "irc://irc.freenode.org/contao.dev",
-        "source": "https://github.com/bit3/contao-logger"
+        "issues": "https://github.com/ContaoBlackForest/contao-logger/issues",
+        "source": "https://github.com/ContaoBlackForest/contao-logger"
     },
     "require": {
         "php": ">=5.3",
@@ -59,5 +61,8 @@
             "dev-master": "2.0.x-dev",
             "dev-develop": "2.1.x-dev"
         }
+    },
+    "replace": {
+        "bit3/contao-logger": "self.version"
     }
 }
