@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ContaoBlackForest/contao-logger.svg?branch=master)](https://travis-ci.org/ContaoBlackForest/contao-logger)
+
 Logger bridge for Contao Open Source CMS
 ========================================
 
