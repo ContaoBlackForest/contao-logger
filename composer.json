@@ -8,6 +8,7 @@
     ],
     "type": "contao-module",
     "license": "LGPL-3.0+",
+    "abandoned": true,
     "authors": [
         {
           "name": "Sven Baumann",
